@@ -62,8 +62,8 @@ var config = {
   devtool: 'source-map',
   module: {
     preLoaders: [{
-      test: /\.jsx$/,
-      loaders: ['babel-loader'],
+      test: /\.(jsx|js)$/,
+      loaders: ['babel-loader', 'eslint'],
       exclude: /(node_modules)|(plugins)/
     }],
     loaders: [{

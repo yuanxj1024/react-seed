@@ -1,7 +1,9 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router';
+import React from 'react';
+import { Link } from 'react-router';
 
-export default class HomeView extends Component {
+export default class HomeView extends React.Component {
+  show = () => {
+  }
   render() {
     return (
       <div>
@@ -16,9 +18,8 @@ export default class HomeView extends Component {
               to product</Link>
           </li>
         </ul>
-        {this.props.children}
+        { this.props.children }
       </div>
-
     );
   }
 }
