@@ -61,12 +61,12 @@ var config = {
   },
   devtool: 'source-map',
   module: {
-    preLoaders: [{
+    preLoaders: [],
+    loaders: [{
       test: /\.(jsx|js)$/,
       loaders: ['babel-loader', 'eslint'],
       exclude: /(node_modules)|(plugins)/
-    }],
-    loaders: [{
+    }, {
       test: /\.html$/,
       loader: 'raw',
       exclude: /(node_modules)|(plugins)/

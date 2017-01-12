@@ -2,7 +2,7 @@
  * 用户actions
  */
 
-import * as types from 'constants/action-types.js';
+import * as types from 'constants/action-types';
 
 export function setUser(user) {
   return {
@@ -11,3 +11,9 @@ export function setUser(user) {
   };
 }
 
+export function editUser(user) {
+  return {
+    type: types.EDIT_USER_INFO,
+    user,
+  };
+}

@@ -10,6 +10,14 @@
     "window": true,
     "document": true
   },
+  # "parserOptions": {
+  #   "ecmaFeatures": {
+  #     "jsx": true
+  #   }
+  # },
+  "settings":{
+    "import/extensions": [".js", ".jsx"]
+  },
   "plugins": [
     "react"
   ],
@@ -30,8 +38,11 @@
     "max-len": "off",
     # "import/no-dynamic-require": "off",
     # "no-useless-escape": "warn"
+    "import/no-extraneous-dependencies":"off",
+    "import/extensions":"off",
     # 放弃一些写法
     "object-curly-spacing": "off",
-    "react/jsx-space-before-closing": "off"
+    "react/jsx-space-before-closing": "off",
+    "extensions": "off"
   }
 }

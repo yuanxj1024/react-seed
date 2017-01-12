@@ -1,10 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router';
+import {Link} from 'react-router';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import Actions from 'actions';
 
-export default class HomeView extends React.Component {
-  show = () => {
+class HomeView extends React.Component {
+  initUser = () => {
+    this.props.actions.setUser({name: 'aaron', age: 18});
   }
   render() {
+    console.log(this.props);
     return (
       <div>
         <h1>Home View</h1>
@@ -18,8 +23,23 @@ export default class HomeView extends React.Component {
               to product</Link>
           </li>
         </ul>
-        { this.props.children }
+        <div>
+          <button className="btn" onClick={this.initUser}>init user</button>
+        </div>
+        {this.props.children}
       </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {user: state.user};
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(Actions, dispatch),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeView);
