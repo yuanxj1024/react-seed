@@ -1,9 +1,9 @@
 {
   "extends": "airbnb",
-  # "env": {
-  #   "browser": true,
-  #   "es6": true
-  # },
+  "env": {
+    "browser": true,
+    "es6": true
+  },
   "parser": "babel-eslint",
   "globals": {
     "Babel": true,
@@ -30,5 +30,8 @@
     "max-len": "off",
     # "import/no-dynamic-require": "off",
     # "no-useless-escape": "warn"
+    # 放弃一些写法
+    "object-curly-spacing": "off",
+    "react/jsx-space-before-closing": "off"
   }
 }
