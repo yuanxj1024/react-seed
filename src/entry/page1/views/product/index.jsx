@@ -8,6 +8,8 @@ export default class Product extends Component {
     return (
       <div>
         product list
+        <hr />
+        {this.props.user.basicInfo.name || 'test'}
       </div>
     );
   }

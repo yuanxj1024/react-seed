@@ -43,6 +43,7 @@
     # 放弃一些写法
     "object-curly-spacing": "off",
     "react/jsx-space-before-closing": "off",
-    "extensions": "off"
+    "extensions": "off",
+    "arrow-body-style": "off"
   }
 }

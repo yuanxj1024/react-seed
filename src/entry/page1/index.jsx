@@ -22,12 +22,10 @@ class Root extends React.Component {
     this.speaking();
   }
   sayHi = () => {
-    console.log(123);
   }
   speaking = () => {}
   render() {
     configureStore();
-    Root.runing();
     return (
       <Provider store={configureStore()}>
         <Router history={hashHistory}>

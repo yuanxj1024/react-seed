@@ -8,8 +8,15 @@ class HomeView extends React.Component {
   initUser = () => {
     this.props.actions.setUser({name: 'aaron', age: 18});
   }
+  bindStoreToChildren = () => {
+    return Object.assign({}, this.props.children, {
+      props: {
+        user: this.props.user,
+        actions: this.props.actions,
+      },
+    });
+  }
   render() {
-    console.log(this.props);
     return (
       <div>
         <h1>Home View</h1>
@@ -26,10 +33,11 @@ class HomeView extends React.Component {
         <div>
           <button className="btn" onClick={this.initUser}>init user</button>
         </div>
-        {this.props.children}
+        {this.bindStoreToChildren()}
       </div>
     );
   }
+
 }
 
 function mapStateToProps(state) {

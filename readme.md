@@ -1,7 +1,7 @@
 # react项目种子
 
 * 中文文档
-	* [React Router](http://cn.redux.js.org/docs/advanced/UsageWithReactRouter.html)
+	* [React Router](http://www.uprogrammer.cn/react-router-cn/index.html)
 	* [saga](http://leonshi.com/redux-saga-in-chinese/docs/introduction/BeginnerTutorial.html)
 	* [Redux](http://cn.redux.js.org/index.html)
 	* [jsx编码规范](https://github.com/JasonBoy/javascript/tree/master/react)
