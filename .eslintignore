@@ -3,4 +3,7 @@ dist
 www
 node_modules
 
-./*
+./*.js
+
+gulpfile.js
+plugin_alias.js

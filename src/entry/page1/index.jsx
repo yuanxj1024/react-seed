@@ -11,7 +11,6 @@ class Root extends React.Component {
     subject: '数学',
   }
   static runing() {
-    console.log('runing');
   }
   constructor(...args) {
     super(...args);
@@ -24,10 +23,8 @@ class Root extends React.Component {
     return this;
   }
   speaking = () => {
-    console.log('speaking');
   }
   render() {
-    console.log(this);
     Root.runing();
     return (
       <div>
