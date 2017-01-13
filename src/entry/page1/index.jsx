@@ -23,7 +23,6 @@ class Root extends React.Component {
   }
   sayHi = () => {
   }
-  speaking = () => {}
   render() {
     configureStore();
     return (
@@ -36,6 +35,8 @@ class Root extends React.Component {
         </Router>
       </Provider>
     );
+  }
+  speaking = () => {
   }
 }
 

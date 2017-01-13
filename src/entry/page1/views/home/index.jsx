@@ -5,14 +5,9 @@ import connect from 'store/connect';
 class HomeView extends React.Component {
   initUser = () => {
     this.props.actions.setUser({name: 'aaron', age: 18});
-  }
-  bindStoreToChildren = () => {
-    return Object.assign({}, this.props.children, {
-      props: {
-        user: this.props.user,
-        actions: this.props.actions,
-      },
-    });
+    setTimeout(() => {
+      this.props.actions.setUser({name: 'aaron Yuan', age: 18});
+    }, 5000);
   }
   render() {
     return (
