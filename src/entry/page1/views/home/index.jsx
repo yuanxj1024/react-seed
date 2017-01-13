@@ -1,8 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-import Actions from 'actions';
+import connect from 'store/connect';
 
 class HomeView extends React.Component {
   initUser = () => {
@@ -33,7 +31,7 @@ class HomeView extends React.Component {
         <div>
           <button className="btn" onClick={this.initUser}>init user</button>
         </div>
-        {this.bindStoreToChildren()}
+        {this.props.children}
       </div>
     );
   }
@@ -44,10 +42,4 @@ function mapStateToProps(state) {
   return {user: state.user};
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(Actions, dispatch),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomeView);
+export default connect(mapStateToProps, HomeView);
