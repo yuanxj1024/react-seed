@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import connect from 'store/connect';
 import Header from 'commonComponents/header';
+import { Button } from 'antd';
+
 import List from '../../components/list';
+
 
 class Product extends Component {
   constructor() {
@@ -21,6 +24,7 @@ class Product extends Component {
       <div>
         <Header />
         <List/>
+        <Button type="primary">this is a button</Button>
         product list
         <hr/> {this.props.user.basicInfo.name || 'test'}
       </div>
