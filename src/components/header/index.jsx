@@ -1,5 +1,7 @@
-import React, {Component} from 'redux';
+import React, {Component} from 'react';
 import connect from 'store/connect';
+
+require('./style.scss');
 
 class Header extends Component {
   componentDidMount() {
@@ -7,8 +9,8 @@ class Header extends Component {
   }
   render() {
     return (
-      <div>
-        <h1>Header</h1>
+      <div className="header">
+        <h1> Header </h1>
       </div>
     );
   }

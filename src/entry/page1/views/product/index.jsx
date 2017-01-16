@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import connect from 'store/connect';
+import Header from 'commonComponents/header/index.jsx';
 
 class Product extends Component {
   constructor() {
@@ -17,6 +18,7 @@ class Product extends Component {
     this.renderList();
     return (
       <div>
+        <Header />
         product list
         <hr/> {this.props.user.basicInfo.name || 'test'}
       </div>
