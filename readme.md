@@ -5,6 +5,7 @@
 	* [saga](http://leonshi.com/redux-saga-in-chinese/docs/introduction/BeginnerTutorial.html)
 	* [Redux](http://cn.redux.js.org/index.html)
 	* [jsx编码规范](https://github.com/JasonBoy/javascript/tree/master/react)
+	* [Ant Design of React](https://ant.design/docs/react/introduce-cn)
 
 
 ####React 模块生命周期
