@@ -4,13 +4,12 @@ import connect from 'store/connect';
 class Product extends Component {
   constructor() {
     super();
-    this.state = {
-      count: 0,
-    };
+    this.state = Object.assign({}, {count: 0});
   }
   componentWillMount() {
     this.setState({
       count: this.state.count + 1,
+      abc: 123
     });
   }
   render() {

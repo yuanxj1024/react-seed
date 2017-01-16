@@ -12,17 +12,16 @@ import './scss/base.scss';
 
 class Root extends React.Component {
   static defaultProps = {
-    subject: '数学',
+    subject: '数学'
   }
   constructor(...args) {
     super(...args);
     this.state = {
-      name: 'Aaron',
+      name: 'Aaron'
     };
     this.speaking();
   }
-  sayHi = () => {
-  }
+  sayHi = () => {}
   render() {
     configureStore();
     return (
@@ -36,8 +35,7 @@ class Root extends React.Component {
       </Provider>
     );
   }
-  speaking = () => {
-  }
+  speaking = () => {}
 }
 
 const container = document.getElementById('app');

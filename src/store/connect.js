@@ -1,3 +1,6 @@
+/**
+ * 将store连接到组件对象上去
+ */
 import {
   bindActionCreators,
 } from 'redux';

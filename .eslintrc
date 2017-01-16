@@ -37,6 +37,7 @@
     "object-curly-spacing": "off",
     "react/jsx-space-before-closing": "off",
     "extensions": "off",
-    "arrow-body-style": "off"
+    "arrow-body-style": "off",
+    "comma-dangle": "off"
   }
 }
