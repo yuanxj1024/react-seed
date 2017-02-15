@@ -1,34 +1,32 @@
-var webpack = require('webpack');
 var path = require('path');
+var webpack = require('webpack');
 var getEntry = require('./getEntry.js');
 var complie = require('./complie.js');
-var alias = require('../plugin_alias.js');
-var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 var containerPath = path.resolve('./');
+var OpenBrowserPlugin = require('open-browser-webpack-plugin');
+var babelpolyfill = require("babel-polyfill");
 
+const loaders = [];
+const plugins = [];
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var extractSASS = new ExtractTextPlugin('[name].css');
 
 // 读取系统配置
 var globalConfig = require('../global.config.json');
-globalConfig = complie(globalConfig);
 
+//定义入口变量
 // 获取所有js入口
-var entrys = getEntry('./src/entry/*/*.jsx');
+var entry = getEntry('./src/entry/*/*.jsx')
+
+
 // 获取所有页面
 var pages = getEntry('./src/entry/*/*.pug');
-
-// webpack处理的插件
-var plugins = [];
-plugins.push(extractSASS);
-// HMR 模块
 plugins.push(new webpack.HotModuleReplacementPlugin());
 plugins.push(new OpenBrowserPlugin({
   url: 'http://localhost:9010'
 }));
+plugins.push(new ExtractTextPlugin('[name].css'));
 
-// 处理pug页面
 for (var chunkname in pages) {
   var conf = {
     filename: chunkname + '.html',
@@ -45,56 +43,66 @@ for (var chunkname in pages) {
   plugins.push(new HtmlWebpackPlugin(conf));
 }
 
-function getFileName(name) {
-  var arr = name.split('\/');
-  return arr[arr.length - 1] + '.js';
-}
-
-/**
- * 配置webpack
- */
-var config = {
-  entry: entrys,
-  output: {
-    path: path.resolve(containerPath, './www/'),
-    filename: '[name].js'
-  },
-  devtool: 'source-map',
-  module: {
-    preLoaders: [],
-    loaders: [{
-      test: /\.(jsx|js)$/,
-      loaders: ['babel-loader', 'eslint'],
-      exclude: /(node_modules)|(plugins)/
-    }, {
-      test: /\.html$/,
-      loader: 'raw',
-      exclude: /(node_modules)|(plugins)/
-    }, {
-      test: /\.scss$/,
-      loader: extractSASS.extract(['css', 'sass']),
-      exclude: /(node_modules)|(plugins)/
-    }, {
-      test: /\.css$/,
-      loader: extractSASS.extract(['css'])
-    }, {
-      test: /\.(eot|svg|ttf|woff|woff2)$/,
-      loader: 'file',
-    }, {
-      test: /.pug$/,
-      loader: 'pug',
-      exclude: /(node_modules)|(plugins)/
-    }, {
-      test: /\.(png|jpg|gif)$/,
-      loader: 'url-loader?limit=8192&name=img/[name].[ext]?[hash:8]',
-      exclude: /(node_modules)|(plugins)/
-    }]
-  },
-  plugins: plugins,
-  resolve: {
-    alias: alias,
-    extensions: ['', '.jsx', '.js', '.css', '.scss', '.pug', '.png', '.jpg']
-  },
-  externals: {}
-};
-module.exports = config;
+//基本配置
+module.exports = {
+    devtool: 'source-map',
+    entry,
+    //配置插件
+    plugins,
+    output: {
+      path: path.resolve('./www/'),
+      filename: '[name].js',
+      sourceMapFilename: '[name].map'
+    },
+    module: {
+      rules: [{
+        test: /\.(jsx|js)$/,
+        use: ['babel-loader'],
+        exclude: /(node_modules)|(plugins)/
+      }, {
+        enforce: 'pre',
+        test: /\.(jsx|js)$/,
+        use: ['eslint-loader'],
+        exclude: /(node_modules)|(plugins)/
+      }, {
+        test: /\.html$/,
+        use: ['raw-loader'],
+        exclude: /(node_modules)|(plugins)/
+      }, {
+        test: /\.(scss|sass)$/,
+        use: ExtractTextPlugin.extract({
+          use:'css-loader!sass-loader'
+        })
+      }, {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          use:'css-loader'
+        })
+      }, {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        use: ['file-loader'],
+      }, {
+        test: /.pug$/,
+        use: ['pug-loader'],
+        exclude: /(node_modules)|(plugins)/
+      }, {
+        test: /\.(png|jpg|gif)$/,
+        use: ['url-loader?limit=8192&name=img/[name].[ext]?[hash:8]'],
+        exclude: /(node_modules)|(plugins)/
+      }]
+    },
+    externals: {},
+    resolve: {
+      alias: {
+        constants: path.resolve(containerPath, './src/constants'),
+        actions: path.resolve(containerPath, './src/actions'),
+        commonComponents: path.resolve(containerPath, './src/components'),
+        reducers: path.resolve(containerPath, './src/reducers'),
+        utils: path.resolve(containerPath, './src/utils'),
+        routers: path.resolve(containerPath, './src/routers'),
+        store: path.resolve(containerPath, './src/store')
+      },
+      extensions: ['.jsx', '.js', '.css', '.scss', '.pug', '.png', '.jpg']
+    },
+    target: 'web'
+  };
