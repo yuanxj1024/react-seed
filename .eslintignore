@@ -3,6 +3,10 @@ dist
 www
 node_modules
 
+src/_
+src/custom_plugins
+src/plugins
+
 ./*.js
 
 gulpfile.js
