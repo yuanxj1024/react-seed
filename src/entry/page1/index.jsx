@@ -1,44 +1,16 @@
-import React from 'react';
-import ReactDom from 'react-dom';
-import {Router, Route, hashHistory} from 'react-router';
-import {Provider} from 'react-redux';
+import 'babel-polyfill';
+import dva from 'dva';
+import model from '../../models/count.js';
+import routes from './views/router.jsx';
 
-import configureStore from 'store/configureStore';
+// webpack2 tree shaking 测试
+import {a} from './test.js';
 
-import HomeView from './views/home';
-import AboutView from './views/about';
-import ProductView from './views/product';
-import './scss/base.scss';
+console.log(a());
 
-class Root extends React.Component {
-  static defaultProps = {
-    subject: '数学'
-  }
-  constructor(...args) {
-    super(...args);
-    this.state = {
-      name: 'Aaron'
-    };
-    this.speaking();
-  }
-  sayHi = () => {}
-  render() {
-    configureStore();
-    return (
-      <Provider store={configureStore()}>
-        <Router history={hashHistory}>
-          <Route path="/" component={HomeView}>
-            <Route path="/about" component={AboutView}/>
-            <Route path="/product" component={ProductView}/>
-          </Route>
-        </Router>
-      </Provider>
-    );
-  }
-  speaking = () => {}
-}
+const app = dva();
+app.model(model);
 
-const container = document.getElementById('app');
+app.router(routes);
 
-ReactDom.render(
-  <Root/>, container);
+app.start('#app');
