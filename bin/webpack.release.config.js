@@ -3,15 +3,11 @@ var path = require('path');
 var getEntry = require('./getEntry.js');
 var complie = require('./complie.js');
 var alias = require('../plugin_alias.js');
-
 var containerPath = path.resolve('./');
 
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var extractSASS = new ExtractTextPlugin('[name].css');
-
-// 自定义插件
-var staticURLReplacePlugin = require('./staticURLReplacePlugin.js');
 
 // 读取系统配置
 var globalConfig = require('../global.config.json');
@@ -25,7 +21,6 @@ var pages = getEntry('./src/entry/*/*.pug');
 // webpack处理的插件
 var plugins = [];
 plugins.push(extractSASS);
-plugins.push(new staticURLReplacePlugin());
 plugins.push(new webpack.optimize.UglifyJsPlugin({
   compress: {
     warnings: false
@@ -65,21 +60,22 @@ var config = {
   },
   devtool: false,
   module: {
-    preLoaders: [{
-      test: /\.js$/,
-      loaders: ['babel-loader', 'eslint-loader'],
-      exclude: /(node_modules)|(plugins)/
-    }],
+    preLoaders: [],
     loaders: [{
+      test: /\.(jsx|js)$/,
+      loaders: ['babel-loader', 'eslint'],
+      exclude: /(node_modules)|(plugins)/
+    }, {
       test: /\.html$/,
       loader: 'raw',
       exclude: /(node_modules)|(plugins)/
     }, {
+      test: /\.scss$/,
+      loader: extractSASS.extract(['css', 'sass']),
+      exclude: /(node_modules)|(plugins)/
+    }, {
       test: /\.css$/,
       loader: extractSASS.extract(['css'])
-    }, {
-      test: /\.scss$/i,
-      loader: extractSASS.extract(['css', 'sass'])
     }, {
       test: /\.(eot|svg|ttf|woff|woff2)$/,
       loader: 'file',
@@ -90,13 +86,13 @@ var config = {
     }, {
       test: /\.(png|jpg|gif)$/,
       loader: 'url-loader?limit=8192&name=img/[name].[ext]?[hash:8]',
-      exclude: /(node_modules)/
+      exclude: /(node_modules)|(plugins)/
     }]
   },
   plugins: plugins,
   resolve: {
     alias: alias,
-    extensions: ['', '.js', '.css', '.scss', '.pug', '.png', '.jpg']
+    extensions: ['', '.jsx', '.js', '.css', '.scss', '.pug', '.png', '.jpg']
   },
   externals: {}
 };
