@@ -12,9 +12,6 @@ const plugins = [];
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-// 读取系统配置
-var globalConfig = require('../global.config.json');
-
 //定义入口变量
 // 获取所有js入口
 var entry = getEntry('./src/entry/*/*.jsx')
@@ -47,8 +44,7 @@ for (var chunkname in pages) {
       collapseWhitespace: false
     },
     chunks: [chunkname],
-    hash: true,
-    globalConfig: globalConfig
+    hash: true
   }
   plugins.push(new HtmlWebpackPlugin(conf));
 }

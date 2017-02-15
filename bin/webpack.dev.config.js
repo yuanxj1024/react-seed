@@ -3,6 +3,7 @@ var webpack = require('webpack');
 var getEntry = require('./getEntry.js');
 var complie = require('./complie.js');
 var containerPath = path.resolve('./');
+var alias = require('../plugin_alias.js');
 var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 var babelpolyfill = require("babel-polyfill");
 
@@ -10,9 +11,6 @@ const loaders = [];
 const plugins = [];
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-// 读取系统配置
-var globalConfig = require('../global.config.json');
 
 //定义入口变量
 // 获取所有js入口
@@ -37,8 +35,7 @@ for (var chunkname in pages) {
       collapseWhitespace: false
     },
     chunks: [chunkname],
-    hash: true,
-    globalConfig: globalConfig
+    hash: true
   }
   plugins.push(new HtmlWebpackPlugin(conf));
 }
@@ -93,15 +90,7 @@ module.exports = {
     },
     externals: {},
     resolve: {
-      alias: {
-        constants: path.resolve(containerPath, './src/constants'),
-        actions: path.resolve(containerPath, './src/actions'),
-        commonComponents: path.resolve(containerPath, './src/components'),
-        reducers: path.resolve(containerPath, './src/reducers'),
-        utils: path.resolve(containerPath, './src/utils'),
-        routers: path.resolve(containerPath, './src/routers'),
-        store: path.resolve(containerPath, './src/store')
-      },
+      alias,
       extensions: ['.jsx', '.js', '.css', '.scss', '.pug', '.png', '.jpg']
     },
     target: 'web'
