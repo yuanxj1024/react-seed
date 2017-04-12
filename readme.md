@@ -2,6 +2,7 @@
 
 * 中文文档
 	* [React Router](http://www.uprogrammer.cn/react-router-cn/index.html)
+	* [dva](https://github.com/dvajs/dva/blob/master/README_zh-CN.md)
 	* [saga](http://leonshi.com/redux-saga-in-chinese/docs/introduction/BeginnerTutorial.html)
 	* [Redux](http://cn.redux.js.org/index.html)
 	* [jsx编码规范](https://github.com/JasonBoy/javascript/tree/master/react)

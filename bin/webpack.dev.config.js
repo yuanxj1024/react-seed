@@ -1,11 +1,11 @@
 var path = require('path');
 var webpack = require('webpack');
 var getEntry = require('./getEntry.js');
-var complie = require('./complie.js');
+// var complie = require('./complie.js');
 var containerPath = path.resolve('./');
 var alias = require('../plugin_alias.js');
-var OpenBrowserPlugin = require('open-browser-webpack-plugin');
-var babelpolyfill = require("babel-polyfill");
+// var OpenBrowserPlugin = require('open-browser-webpack-plugin');
+// var babelpolyfill = require("babel-polyfill");
 
 const loaders = [];
 const plugins = [];
@@ -14,15 +14,16 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 //定义入口变量
 // 获取所有js入口
-var entry = getEntry('./src/entry/*/*.jsx')
+var entry = getEntry('./src/entry/*.jsx')
 
+console.log('entry', entry);
 
 // 获取所有页面
-var pages = getEntry('./src/entry/*/*.pug');
+var pages = getEntry('./src/entry/*.pug');
 plugins.push(new webpack.HotModuleReplacementPlugin());
-plugins.push(new OpenBrowserPlugin({
-  url: 'http://localhost:9010'
-}));
+// plugins.push(new OpenBrowserPlugin({
+//   url: 'http://localhost:9010'
+// }));
 plugins.push(new ExtractTextPlugin('[name].css'));
 
 for (var chunkname in pages) {

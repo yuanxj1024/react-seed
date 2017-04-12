@@ -5,7 +5,7 @@ var glob = require('glob');
 function getEntry(sourcePath) {
   var entrys = {};
   var basename;
-  sourcePath = sourcePath || './src/entry/*/*.jsx';
+  sourcePath = sourcePath;
   glob.sync(sourcePath).forEach(function (entry) {
     if (!/\/_\/|\/plugins\/|\/custom_plugins\//g.test(entry)) {
       var basename = entry.replace('./src/', '');
