@@ -14,12 +14,10 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 //定义入口变量
 // 获取所有js入口
-var entry = getEntry('./src/entry/*.jsx')
-
-console.log('entry', entry);
+var entry = getEntry('./src/*.jsx')
 
 // 获取所有页面
-var pages = getEntry('./src/entry/*.pug');
+var pages = getEntry('./src/*.pug');
 plugins.push(new webpack.HotModuleReplacementPlugin());
 // plugins.push(new OpenBrowserPlugin({
 //   url: 'http://localhost:9010'
