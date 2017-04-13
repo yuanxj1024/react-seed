@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import connect from 'store/connect';
+import connect from 'dva';
 
 require('./style.scss');
 

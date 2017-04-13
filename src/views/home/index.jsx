@@ -1,14 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router';
-import connect from 'store/connect';
+import {connect} from 'dva';
 
 class HomeView extends React.Component {
-  initUser = () => {
-    this.props.actions.setUser({name: 'aaron', age: 18});
-    setTimeout(() => {
-      this.props.actions.setUser({name: 'aaron Yuan', age: 18});
-    }, 5000);
-  }
   render() {
     return (
       <div>
@@ -30,6 +24,13 @@ class HomeView extends React.Component {
       </div>
     );
   }
+  initUser() {
+    this.dispatch('user/name');
+    // this.props.actions.setUser({name: 'aaron', age: 18});
+    // setTimeout(() => {
+    //   this.props.actions.setUser({name: 'aaron Yuan', age: 18});
+    // }, 5000);
+  }
 
 }
 
@@ -37,4 +38,4 @@ function mapStateToProps(state) {
   return {user: state.user};
 }
 
-export default connect(mapStateToProps, HomeView);
+export default connect(mapStateToProps)(HomeView);

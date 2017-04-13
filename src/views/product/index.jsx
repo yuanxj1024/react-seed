@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import connect from 'store/connect';
+import {connect} from 'dva';
 import Header from 'commonComponents/header';
 import { Button } from 'antd';
 
@@ -27,6 +27,9 @@ class Product extends Component {
         <Button type="primary">this is a button</Button>
         product list
         <hr/> {this.props.user.basicInfo.name || 'test'}
+        <div>
+          {this.props.children}
+        </div>
       </div>
     );
   }
@@ -35,4 +38,4 @@ class Product extends Component {
 
 export default connect((state) => {
   return {user: state.user};
-}, Product);
+})(Product);
