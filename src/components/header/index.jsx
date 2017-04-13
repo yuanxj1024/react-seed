@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import connect from 'dva';
+import {connect} from 'dva';
 
 require('./style.scss');
 
@@ -18,4 +18,4 @@ class Header extends Component {
 
 export default connect((state) => {
   return {user: state.user};
-}, Header);
+})(Header);

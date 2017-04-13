@@ -52,21 +52,21 @@ const routers = ({
   };
 
   const childRoutes = createRoute(RouteConfig);
-  console.log(childRoutes);
+  // console.log(childRoutes);
 
   const routes = [
     {
       path: '/',
       component: LayoutView,
       indexRoute: {
-        // getComponent: childRoutes[0].getComponent,
-        getComponent: (l, cb) => {
-          import('./home/index.jsx').then((component) => {
-            cb(null, component.default);
-          });
-        }
+        getComponent: childRoutes[0].getComponent,
+        // getComponent: (l, cb) => {
+        //   import('./home/index.jsx').then((component) => {
+        //     cb(null, component.default);
+        //   });
+        // }
       },
-      // childRoutes
+      childRoutes
     }
   ];
   return (<Router history={history} routes={routes}/>);

@@ -3,7 +3,7 @@ import {connect} from 'dva';
 import Header from 'commonComponents/header';
 import { Button } from 'antd';
 
-import List from '../../components/list';
+// import List from '../../components/list';
 
 
 class Product extends Component {
@@ -23,10 +23,8 @@ class Product extends Component {
     return (
       <div>
         <Header />
-        <List/>
         <Button type="primary">this is a button</Button>
         product list
-        <hr/> {this.props.user.basicInfo.name || 'test'}
         <div>
           {this.props.children}
         </div>
@@ -36,6 +34,4 @@ class Product extends Component {
   renderList = () => {}
 }
 
-export default connect((state) => {
-  return {user: state.user};
-})(Product);
+export default connect()(Product);
