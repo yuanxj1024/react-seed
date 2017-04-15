@@ -1,15 +1,12 @@
 {
-  "name": "niugu_huodong",
+  "name": "react-seed",
   "version": "1.0.0",
-  "description": "",
+  "description": "react project seed",
   "main": "index.js",
   "scripts": {
-    "react": "webpack --colors --config bin/webpack.dev.config.js",
     "dev": "node bin/server.js",
     "webpack": "webpack --colors --config bin/webpack.release.config.js --optimize-minimize && gulp clean:img",
     "build": "npm run webpack",
-    "test": "webpack --colors --config bin/webpack.release.config.js && gulp clean:img",
-    "pretest": "gulp release",
     "prebuild": "gulp release",
     "eslint": "eslint ./src/"
   },
