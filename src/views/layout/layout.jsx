@@ -10,9 +10,7 @@ class Layout extends React.Component {
       </div>
     );
   }
-  init() {
-    console.log(this);
-  }
+  init = () => {}
 }
 
 export default connect()(Layout);

@@ -5,7 +5,6 @@ require('./style.scss');
 
 class Header extends Component {
   componentDidMount() {
-    console.log('did');
   }
   render() {
     return (

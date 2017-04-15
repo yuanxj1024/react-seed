@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router';
 import {connect} from 'dva';
 import Header from 'commonComponents/header';
 import { Button } from 'antd';
@@ -18,13 +19,22 @@ class Product extends Component {
     });
   }
   render() {
-    console.log('product', this);
     this.renderList();
     return (
       <div>
         <Header />
-        <Button type="primary">this is a button</Button>
+        <h3>
         product list
+        </h3>
+        <Button type="primary">this is a button</Button>
+        <ul>
+          <li>
+            <Link to="/product/product-detail">详情</Link>
+          </li>
+          <li>
+            <Link to="/product/product-list">列表</Link>
+          </li>
+        </ul>
         <div>
           {this.props.children}
         </div>

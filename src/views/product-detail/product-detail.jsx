@@ -10,7 +10,6 @@ class Detail extends React.Component {
     );
   }
   initData = () => {
-    console.log('init');
   }
 }
 

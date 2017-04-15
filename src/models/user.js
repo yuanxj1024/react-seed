@@ -4,19 +4,24 @@ export default {
     name: '',
   },
   reducers: {
-    name(state) {
+    name(state, {
+      payload: name,
+    }) {
       return {
         ...state,
-        name: state.name
+        name,
       };
     }
   },
   effects: {
-    * name(action, {
-      put
+    * setName(action, {
+      put,
+      select,
     }) {
+      const name = yield select(state => state.name);
       yield put({
         type: 'name',
+        payload: name,
       });
     }
   },

@@ -4,7 +4,6 @@ import {Router} from 'dva/router';
 import LayoutView from './layout/layout.jsx';
 import RouteConfig from './router-config.js';
 
-console.log(111, RouteConfig);
 
 // const routers = ({history}) => <Router history={history}>
 //   <Route path="/" component={CountApp}/>
@@ -21,7 +20,7 @@ const routers = ({
   // 验证权限
   const checkAuth = () => {
     const {user} = getState();
-    console.log(user);
+    return user;
   };
 
   const createRoute = (list) => {
@@ -52,7 +51,6 @@ const routers = ({
   };
 
   const childRoutes = createRoute(RouteConfig);
-  // console.log(childRoutes);
 
   const routes = [
     {
@@ -60,11 +58,6 @@ const routers = ({
       component: LayoutView,
       indexRoute: {
         getComponent: childRoutes[0].getComponent,
-        // getComponent: (l, cb) => {
-        //   import('./home/index.jsx').then((component) => {
-        //     cb(null, component.default);
-        //   });
-        // }
       },
       childRoutes
     }

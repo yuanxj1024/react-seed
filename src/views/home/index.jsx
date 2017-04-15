@@ -3,6 +3,7 @@ import {Link} from 'react-router';
 import {connect} from 'dva';
 
 class HomeView extends React.Component {
+  componentDidMount() {}
   render() {
     return (
       <div>
@@ -18,20 +19,24 @@ class HomeView extends React.Component {
           </li>
         </ul>
         <div>
+          <input
+            placeholder="enter your name"
+            ref={(c) => {
+              this.userName = c;
+            }}
+          />
+        </div>
+        <h3>Hello, {this.props.user.name}</h3>
+        <div>
           <button className="btn" onClick={this.initUser}>init user</button>
         </div>
         {this.props.children}
       </div>
     );
   }
-  initUser() {
-    this.dispatch('user/name');
-    // this.props.actions.setUser({name: 'aaron', age: 18});
-    // setTimeout(() => {
-    //   this.props.actions.setUser({name: 'aaron Yuan', age: 18});
-    // }, 5000);
+  initUser = () => {
+    this.props.dispatch({type: 'user/name', payload: this.userName.value});
   }
-
 }
 
 function mapStateToProps(state) {

@@ -1,5 +1,7 @@
+import UserModel from './user.js';
+
 const bindModels = (dva) => {
-  dva.model({});
+  dva.model(UserModel);
 };
 
 export default bindModels;
