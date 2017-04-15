@@ -8,7 +8,8 @@ var alias = {
   reducers:  path.resolve(containerPath, './src/reducers'),
   utils:  path.resolve(containerPath, './src/utils'),
   routers:  path.resolve(containerPath, './src/routers'),
-  store:  path.resolve(containerPath, './src/store')
+  store:  path.resolve(containerPath, './src/store'),
+  service: path.resolve(containerPath, './src/service')
 };
 
 module.exports = alias;
