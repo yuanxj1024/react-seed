@@ -2,7 +2,12 @@ import React from 'react';
 import {Link} from 'react-router';
 import {connect} from 'dva';
 
+import {Modal, Button} from 'antd';
+
 class HomeView extends React.Component {
+  state = {
+    visible: false
+  }
   componentDidMount() {}
   render() {
     return (
@@ -22,9 +27,8 @@ class HomeView extends React.Component {
           <input
             placeholder="enter your name"
             ref={(c) => {
-              this.userName = c;
-            }}
-          />
+            this.userName = c;
+          }}/>
         </div>
         <h3>Hello, {this.props.user.name}, {this.props.user.age}</h3>
         <div>
@@ -36,23 +40,48 @@ class HomeView extends React.Component {
             result: {this.props.user.ajaxResult}
           </p>
         </div>
+        <Button type="primary" onClick={this.showModal}>Open a modal dialog</Button>
+        <Modal
+          title="Basic Modal"
+          visible={this.state.visible}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}>
+          <p>some contents...</p>
+          <p>some contents...</p>
+          <p>some contents...</p>
+        </Modal>
         {this.props.children}
       </div>
     );
   }
   initUser = () => {
-    this.props.dispatch({type: 'user/name', payload: this.userName.value});
-    this.props.dispatch({type: 'user/age', payload: 23});
+    this
+      .props
+      .dispatch({type: 'user/name', payload: this.userName.value});
+    this
+      .props
+      .dispatch({type: 'user/age', payload: 23});
   }
 
   handleAjaxClick = () => {
-    this.props.dispatch({
-      type: 'user/login',
-      payload: {
-        mobile: '123456789',
-        pwd: 'pwd',
-      },
-    });
+    this
+      .props
+      .dispatch({
+        type: 'user/login',
+        payload: {
+          mobile: '123456789',
+          pwd: 'pwd'
+        }
+      });
+  }
+  showModal = () => {
+    this.setState({visible: true});
+  }
+  handleOk = () => {
+    this.setState({visible: false});
+  }
+  handleCancel = () => {
+    this.setState({visible: false});
   }
 }
 
