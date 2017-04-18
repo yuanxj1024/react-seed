@@ -24,10 +24,10 @@ plugins.push(new webpack.DllReferencePlugin({
   context: __dirname,
   manifest: require('../dist/vendor-manifest.json')
 }));
-plugins.push(new webpack.optimize.CommonsChunkPlugin({
-  name: 'commons',
-  filename: 'commons.js'
-}));
+// plugins.push(new webpack.optimize.CommonsChunkPlugin({
+//   name: 'commons',
+//   filename: 'commons.js'
+// }));
 
 for (var chunkname in pages) {
   var conf = {
@@ -38,8 +38,8 @@ for (var chunkname in pages) {
       removeComments: true,
       collapseWhitespace: false
     },
-    chunks: ['commons', chunkname],
-    hash: true
+    chunks: [chunkname],
+    hash: false
   }
   plugins.push(new HtmlWebpackPlugin(conf));
 }
@@ -53,7 +53,7 @@ module.exports = {
   output: {
     path: path.resolve('./dist'),
     publicPath: '/dist',
-    filename: '[name].js?[hash:8]',
+    filename: '[name].js?[hash:6]',
     sourceMapFilename: '[name].map'
   },
   module: {
