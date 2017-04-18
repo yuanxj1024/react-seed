@@ -8,6 +8,7 @@
     "webpack": "webpack --colors --config bin/webpack.release.config.js --optimize-minimize && gulp clean:img",
     "build": "npm run webpack",
     "prebuild": "gulp release",
+    "dll": "webpack --config bin/webpack.dev.dll.js",
     "eslint": "eslint ./src/"
   },
   "pre-commit": {

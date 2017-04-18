@@ -18,6 +18,7 @@ var server = new WebpackDevServer(compiler, {
   stats: {
     colors: true // 用颜色标识
   },
-  contentBase: 'src'
+  // contentBase: 'src'
+  publicPath: config.output.publicPath,
 });
 server.listen(port);
