@@ -9,6 +9,7 @@ import {
   Modal,
   Button
 } from 'antd';
+import './index.scss';
 
 class HomeView extends React.Component {
   state = {

@@ -5,7 +5,6 @@ var complie = require('./complie.js');
 var alias = require('../plugin_alias.js');
 var containerPath = path.resolve('./');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var babelpolyfill = require("babel-polyfill");
 
 const loaders = [];
 const plugins = [];

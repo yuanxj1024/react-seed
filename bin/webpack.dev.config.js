@@ -16,7 +16,10 @@ var entry = getEntry('./src/*.jsx')
 // 获取所有页面
 var pages = getEntry('./src/*.pug');
 plugins.push(new webpack.HotModuleReplacementPlugin());
-plugins.push(new ExtractTextPlugin('[name].css'));
+plugins.push(new ExtractTextPlugin({
+  filename: '[name].css',
+  allChunks: true,
+}));
 plugins.push(new webpack.DllReferencePlugin({
   context: __dirname,
   manifest: require('../dist/vendor-manifest.json')
